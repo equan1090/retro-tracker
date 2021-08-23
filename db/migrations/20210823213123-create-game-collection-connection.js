@@ -1,28 +1,20 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Games', {
+    return queryInterface.createTable('GameCollectionConnections', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name: {
+      collectionId: {
         allowNull: false,
-        type: Sequelize.STRING(100)
+        type: Sequelize.INTEGER
       },
-      description: {
+      gameId: {
         allowNull: false,
-        type: Sequelize.TEXT
-      },
-      platform: {
-        allowNull: false,
-        type: Sequelize.STRING(25)
-      },
-      publisher: {
-        allowNull: false,
-        type: Sequelize.STRING(50)
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
@@ -35,6 +27,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Games');
+    return queryInterface.dropTable('GameCollectionConnections');
   }
 };
