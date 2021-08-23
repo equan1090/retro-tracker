@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {});
   GameCollectionConnection.associate = function(models) {
-    // associations can be defined here
+    //NOTE THAT THERE WILL BE NO ASSOCIATIONS HERE!!
   };
   return GameCollectionConnection;
 };
