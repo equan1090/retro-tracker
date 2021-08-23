@@ -10,11 +10,13 @@ module.exports = {
       },
       collectionId: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {model: "Collections"}
       },
       gameId: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {model: "Games"}
       },
       createdAt: {
         allowNull: false,

@@ -19,7 +19,13 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {});
   Game.associate = function(models) {
-    // associations can be defined here
+    Game.belongsToMany(models.Collection, {
+      through: "GameCollectionConnection",
+      otherKey: "collectionId",
+      foreignKey: "gameId"
+    });
+    Game.hasMany(models.Review, {foreignKey: "gameId"});
+    
   };
   return Game;
 };
