@@ -1,4 +1,21 @@
 extends layout
+
 block content
     h1= title
-    
+    form(action='/users/register' method='post')
+        input(type='hidden' name='_csrf' value=csrfToken)
+        div
+            label(for='username') Username
+            input(type='text' name='username' value=user.username required)
+        div
+            label(for='email') Email
+            input(type='email' name='email' value=user.email required)
+        div
+            label(for='password') Password
+            input(type='password' name='password' value=user.password required)
+        div
+            label(for='confirmPassword') Confirm Password
+            input(type='password' name='confirmPassword' required)
+        div
+            button(type='submit') Register
+            a(href='/') Cancel

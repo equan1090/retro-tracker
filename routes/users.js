@@ -12,20 +12,20 @@ const {
   } = require('./utils');
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
+router.get('/', asyncHandler( async(req, res, next) =>  {
   res.send('respond with a resource');
-});
+}));
 
-router.get('/register',  /*csrfProtection, */asyncHandler( async (req, res, next) => {
+router.get('/register',  csrfProtection, asyncHandler( async (req, res, next) => {
   const user = await db.User.build();
   res.render('user-register', {
     title: 'Register with RetroGameTracker',
     user,
-    // csrfToken: req.csrfToken()
+    csrfToken: req.csrfToken()
   })
 }));
 
-router.post('/register', /*csrfProtection, */userValidators, asyncHandler( async (req, res, next) => {
+router.post('/register', csrfProtection, userValidators, asyncHandler( async (req, res, next) => {
   const {
     email,
     username,
@@ -54,7 +54,7 @@ router.post('/register', /*csrfProtection, */userValidators, asyncHandler( async
       title: 'Register with RetroGameTracker',
       user,
       errors,
-      // csrfToken: req.csrfToken()
+      csrfToken: req.csrfToken()
     });
   }
 }));
