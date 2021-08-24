@@ -16,6 +16,52 @@ router.get('/', asyncHandler( async(req, res, next) =>  {
   res.send('respond with a resource');
 }));
 
+router.get('/login', /*csrfProtection,*/ asyncHandler(async(req, res, next) => {
+  // const user = await db.User.;
+  res.render('login', {
+    title: 'Log in to RetroGameTracker',
+    // csrfToken: req.csrfToken(),
+  })
+}))
+
+router.post('/login', /*csrfProtection,*/ asyncHandler(async(req, res, next) => {
+  const {
+    email,
+    password
+  } = req.body;
+
+  const validationErrors = validationResult(req);
+  const errors = [];
+
+  if(validationErrors.isEmpty()) {
+    const user = await db.User.findOne({
+      where: { email },
+    })
+
+    if(user !== null) {
+      const compare = await bcrypt.compare(password, user.hashedPassword)
+      if(compare) {
+        // TODO: We need to implement login persistence!!!
+        // Redirect to home page
+        res.send('User has succesfully logged in')
+      }
+    }
+    errors.push("Log in failed")
+    res.send('Failure')
+
+  } else{
+    errors = validationErrors.array().map(error => error.msg);
+    res.render('login', {
+      title: 'Log in to RetroGameTracker',
+      user,
+      errors,
+      // csrfToken: req.csrfToken()
+    });
+  }
+
+}))
+
+
 router.get('/register',  csrfProtection, asyncHandler( async (req, res, next) => {
   const user = await db.User.build();
   res.render('user-register', {
@@ -37,8 +83,7 @@ router.post('/register', csrfProtection, userValidators, asyncHandler( async (re
     username,
   })
 
-  //TODO: Need to call validators here and save it to a variable
-  //  Please change null to correct value when time comes
+
   const validationErrors = validationResult(req);
   console.log(validationErrors)
   if (validationErrors.isEmpty()){
