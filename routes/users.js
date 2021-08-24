@@ -16,16 +16,16 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
-router.get('/register', csrfProtection, asyncHandler( async (req, res, next) => {
+router.get('/register',  /*csrfProtection, */asyncHandler( async (req, res, next) => {
   const user = await db.User.build();
   res.render('user-register', {
     title: 'Register with RetroGameTracker',
     user,
-    csrfToken: req.csrfToken()
+    // csrfToken: req.csrfToken()
   })
 }));
 
-router.post('/register', csrfProtection, userValidators, asyncHandler( async (req, res, next) => {
+router.post('/register', /*csrfProtection, */userValidators, asyncHandler( async (req, res, next) => {
   const {
     email,
     username,
@@ -40,7 +40,7 @@ router.post('/register', csrfProtection, userValidators, asyncHandler( async (re
   //TODO: Need to call validators here and save it to a variable
   //  Please change null to correct value when time comes
   const validationErrors = validationResult(req);
-
+  console.log(validationErrors)
   if (validationErrors.isEmpty()){
 
     user.hashedPassword = await bcrypt.hash(password, 10);
@@ -54,7 +54,7 @@ router.post('/register', csrfProtection, userValidators, asyncHandler( async (re
       title: 'Register with RetroGameTracker',
       user,
       errors,
-      csrfToken: req.csrfToken()
+      // csrfToken: req.csrfToken()
     });
   }
 }));
