@@ -19,12 +19,18 @@ router.get('/:id(\\d+)', restoreUser, requireAuth, asyncHandler( async(req, res,
   if (userId == req.session.auth.userId) {
     if (specifiedUser) {
       console.log(specifiedUser);
-      res.send(specifiedUser.username);
+      res.render('users-page', {
+        userProfilePage: true,
+        specifiedUser
+      });
     } else {
       console.log(`No user with id ${userId} exists`);
     }
   } else {
-    res.send(`You are not user ${userId}`);
+    res.render('users-page', {
+      userProfilePage: false,
+      specifiedUser
+    });
   }
 }));
 
