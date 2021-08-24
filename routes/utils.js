@@ -5,6 +5,17 @@ const asyncHandler = (handler) => (req, res, next) => handler(req, res, next).ca
 const { check } = require('express-validator');
 const db = require('../db/models');
 
+
+const loginValidators = [
+    check('email')
+        .exists({ checkFalsy: true })
+        .withMessage('Invalid email or password'),
+
+    check('password')
+        .exists({ checkFalsy: true })
+        .withMessage('Invalid email or password')
+]
+
 const userValidators = [
     check('email')
         .exists({ checkFalsy: true })
@@ -56,6 +67,7 @@ const userValidators = [
 ]
 
 module.exports = {
+  loginValidators,
   bcrypt,
   csrfProtection,
   asyncHandler,
