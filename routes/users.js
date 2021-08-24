@@ -1,7 +1,7 @@
 var express = require('express');
 const { validationResult } = require('express-validator');
 var router = express.Router();
-
+const {loginUser, restoreUser} = require('../auth.js')
 
 const db = require('../db/models');
 const {
@@ -41,8 +41,7 @@ router.post('/login', csrfProtection, asyncHandler(async(req, res, next) => {
     if(user !== null) {
       const compare = await bcrypt.compare(password, user.hashedPassword)
       if(compare) {
-        // TODO: We need to implement login persistence!!!
-        // Redirect to home page
+        loginUser(req, res, user);
         res.redirect('/');
       }
     }
@@ -90,6 +89,7 @@ router.post('/register', csrfProtection, userValidators, asyncHandler( async (re
 
     user.hashedPassword = await bcrypt.hash(password, 10);
     await user.save();
+    loginUser(req, res, user);
     res.redirect('/');
 
   } else {
