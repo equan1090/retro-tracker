@@ -16,15 +16,15 @@ router.get('/', asyncHandler( async(req, res, next) =>  {
   res.send('respond with a resource');
 }));
 
-router.get('/login', /*csrfProtection,*/ asyncHandler(async(req, res, next) => {
+router.get('/login', csrfProtection, asyncHandler(async(req, res, next) => {
   // const user = await db.User.;
   res.render('login', {
     title: 'Log in to RetroGameTracker',
-    // csrfToken: req.csrfToken(),
+    csrfToken: req.csrfToken(),
   })
 }))
 
-router.post('/login', /*csrfProtection,*/ asyncHandler(async(req, res, next) => {
+router.post('/login', csrfProtection, asyncHandler(async(req, res, next) => {
   const {
     email,
     password
@@ -43,7 +43,7 @@ router.post('/login', /*csrfProtection,*/ asyncHandler(async(req, res, next) => 
       if(compare) {
         // TODO: We need to implement login persistence!!!
         // Redirect to home page
-        res.send('User has succesfully logged in')
+        res.redirect('/');
       }
     }
     errors.push("Log in failed")
@@ -55,7 +55,7 @@ router.post('/login', /*csrfProtection,*/ asyncHandler(async(req, res, next) => 
       title: 'Log in to RetroGameTracker',
       user,
       errors,
-      // csrfToken: req.csrfToken()
+      csrfToken: req.csrfToken()
     });
   }
 
