@@ -1,7 +1,7 @@
 var express = require('express');
 const { validationResult } = require('express-validator');
 var router = express.Router();
-const {loginUser, restoreUser} = require('../auth.js')
+const { loginUser, logoutUser, restoreUser, requireAuth } = require('../auth.js')
 
 const db = require('../db/models');
 const {
@@ -12,8 +12,20 @@ const {
   } = require('./utils');
 
 /* GET users listing. */
-router.get('/', asyncHandler( async(req, res, next) =>  {
-  res.send('respond with a resource');
+router.get('/:id(\\d+)', restoreUser, requireAuth, asyncHandler( async(req, res, next) =>  {
+  const userId = req.params.id;
+  const specifiedUser = await db.User.findByPk(userId);
+
+  if (userId == req.session.auth.userId) {
+    if (specifiedUser) {
+      console.log(specifiedUser);
+      res.send(specifiedUser.username);
+    } else {
+      console.log(`No user with id ${userId} exists`);
+    }
+  } else {
+    res.send(`You are not user ${userId}`);
+  }
 }));
 
 router.get('/login', csrfProtection, asyncHandler(async(req, res, next) => {
@@ -42,7 +54,7 @@ router.post('/login', csrfProtection, asyncHandler(async(req, res, next) => {
       const compare = await bcrypt.compare(password, user.hashedPassword)
       if(compare) {
         loginUser(req, res, user);
-        res.redirect('/');
+        res.redirect(`/users/${user.id}`);
       }
     }
     errors.push("Log in failed")
@@ -57,8 +69,12 @@ router.post('/login', csrfProtection, asyncHandler(async(req, res, next) => {
       csrfToken: req.csrfToken()
     });
   }
-
 }))
+
+router.get('/logout', (req, res, next) => {
+  logoutUser(req, res);
+  res.redirect('/');
+});
 
 
 router.get('/register',  csrfProtection, asyncHandler( async (req, res, next) => {
