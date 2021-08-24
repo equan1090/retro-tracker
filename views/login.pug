@@ -1,0 +1,16 @@
+extends layout.pug 
+block content
+    h1= title 
+    form(action='/users/login' method='post')
+        input(type='hidden' name='_csrf' value=csrfToken)
+        div
+            label(for='email') Email
+            input(type='email' name='email' required)
+        div
+            label(for='password') Password
+            input(type='password' name='password' required)
+        div
+            button(type='submit') Log in
+            a(href='/') Cancel
+    div 
+        a(href='/users/register') Don't have an account? Register here!

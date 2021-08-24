@@ -1,7 +1,7 @@
 var express = require('express');
 const { validationResult } = require('express-validator');
 var router = express.Router();
-
+const {loginUser, restoreUser} = require('../auth.js')
 
 const db = require('../db/models');
 const {
@@ -16,15 +16,15 @@ router.get('/', asyncHandler( async(req, res, next) =>  {
   res.send('respond with a resource');
 }));
 
-router.get('/login', /*csrfProtection,*/ asyncHandler(async(req, res, next) => {
+router.get('/login', csrfProtection, asyncHandler(async(req, res, next) => {
   // const user = await db.User.;
   res.render('login', {
     title: 'Log in to RetroGameTracker',
-    // csrfToken: req.csrfToken(),
+    csrfToken: req.csrfToken(),
   })
 }))
 
-router.post('/login', /*csrfProtection,*/ asyncHandler(async(req, res, next) => {
+router.post('/login', csrfProtection, asyncHandler(async(req, res, next) => {
   const {
     email,
     password
@@ -41,9 +41,8 @@ router.post('/login', /*csrfProtection,*/ asyncHandler(async(req, res, next) => 
     if(user !== null) {
       const compare = await bcrypt.compare(password, user.hashedPassword)
       if(compare) {
-        // TODO: We need to implement login persistence!!!
-        // Redirect to home page
-        res.send('User has succesfully logged in')
+        loginUser(req, res, user);
+        res.redirect('/');
       }
     }
     errors.push("Log in failed")
@@ -55,7 +54,7 @@ router.post('/login', /*csrfProtection,*/ asyncHandler(async(req, res, next) => 
       title: 'Log in to RetroGameTracker',
       user,
       errors,
-      // csrfToken: req.csrfToken()
+      csrfToken: req.csrfToken()
     });
   }
 
@@ -90,6 +89,7 @@ router.post('/register', csrfProtection, userValidators, asyncHandler( async (re
 
     user.hashedPassword = await bcrypt.hash(password, 10);
     await user.save();
+    loginUser(req, res, user);
     res.redirect('/');
 
   } else {
