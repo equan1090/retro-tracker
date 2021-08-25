@@ -21,6 +21,7 @@ router.get('/:id(\\d+)', restoreUser, requireAuth, asyncHandler( async(req, res,
     include: db.Game
     });
 
+    // Checks if you are in your own profile page
   if (userId == req.session.auth.userId) {
     if (specifiedUser) {
       console.log(specifiedUser);

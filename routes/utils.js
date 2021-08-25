@@ -66,10 +66,25 @@ const userValidators = [
           })
 ]
 
+const reviewValidators = [
+    check("title")
+        .exists({checkFalsy: true})
+        .withMessage("Please provide a title"),
+    check("rating")
+        .exists({checkFalsy: true})
+        .withMessage("Please provide a valid rating"),
+    check("content")
+        .exists({checkFalsy: true})
+        .withMessage(
+            `You have come all this way to make a review and haven't written anything? Why not?? Please write a review`
+        )
+]
+
 module.exports = {
   loginValidators,
   bcrypt,
   csrfProtection,
   asyncHandler,
-  userValidators
+  userValidators,
+  reviewValidators
 };
