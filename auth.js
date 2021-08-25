@@ -1,5 +1,5 @@
 const db = require('./db/models');
-// random test comment
+// random test comments
 
 const loginUser = (req, res, user) => {
    req.session.auth = {
