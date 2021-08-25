@@ -4,5 +4,5 @@ block content
     h1= `${specifiedUser.username}'s Collections`
         ul
             each collection in collections
-                h2= `${collection.name}`
-                    li= collection
+                h2
+                    a(href=`/collections/${collection.id}`)= `${collection.name}`

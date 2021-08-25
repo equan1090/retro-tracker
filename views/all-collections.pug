@@ -1,0 +1,13 @@
+extends layout
+block content
+    table
+        thead
+            tr
+                td Name
+                td User
+        tbody
+            each collection in allCollections
+                tr
+                    td= collection.name
+                    td= collection.User.username
+                    td: a(href=`/collections/${collection.id}`) Click to see more info

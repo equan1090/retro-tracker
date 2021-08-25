@@ -27,7 +27,7 @@ router.get('/:id(\\d+)', restoreUser, requireAuth, asyncHandler( async(req, res,
       res.render('users-page', {
         userProfilePage: true,
         specifiedUser,
-        collections
+        collections,
       });
     } else {
       console.log(`No user with id ${userId} exists`);
@@ -35,7 +35,8 @@ router.get('/:id(\\d+)', restoreUser, requireAuth, asyncHandler( async(req, res,
   } else {
     res.render('users-page', {
       userProfilePage: false,
-      specifiedUser
+      specifiedUser,
+      collections
     });
   }
 }));
