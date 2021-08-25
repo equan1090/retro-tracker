@@ -15,11 +15,6 @@ const {
 router.get('/:id(\\d+)', restoreUser, requireAuth, asyncHandler( async(req, res, next) =>  {
   const userId = req.params.id;
   const specifiedUser = await db.User.findByPk(userId);
-  const collection = await db.Collection.findAll({
-    where:userId,
-    include: Game
-  });
-
 
   const collections = await db.Collection.findAll({
     where: { userId },
