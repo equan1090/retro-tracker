@@ -6,7 +6,7 @@ const db = require('../db/models')
 //Gets all games in the games table
 router.get('/', asyncHandler(async(req, res, next) => {
     const allGames = await db.Game.findAll();
-    console.log(allGames);
+
     res.render('all-games', {allGames})
 }))
 
@@ -14,7 +14,7 @@ router.get('/', asyncHandler(async(req, res, next) => {
 router.get('/:id(\\d+)', asyncHandler(async(req, res, next) => {
     const specificGame = await db.Game.findByPk(req.params.id)
     if(specificGame) {
-        console.log(specificGame)
+        
         res.render('specific-game', {specificGame})
     }else{
         next(new Error("Game not found"));

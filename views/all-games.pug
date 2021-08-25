@@ -1,2 +1,20 @@
 extends layout
 block content
+    table
+        thead
+            tr
+                td Name
+                td Description
+                td Platform
+                td Publisher
+                td More Info
+        tbody
+            each game in allGames
+                tr
+                    td= game.name
+                    td= game.description
+                    td= game.platform
+                    td= game.publisher
+                    td: a(href=`/games/${game.id}`) Click to see more info
+
+
