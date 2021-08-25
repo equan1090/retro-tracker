@@ -1,4 +1,7 @@
 extends layout
 
 block content
-    h1= specifiedUser.username
+    h1= `${specifiedUser.username}'s Collections`
+        ul
+            each collection in collections
+                h2= `${collection.name}`
