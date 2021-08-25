@@ -1,4 +1,16 @@
 extends layout
 block content
     h1 Create Review
-    form(action='/games/:id(\\d+)/' method='post')
+    form(action=`/games/${gameId}/reviews` method='post')
+        input(type='hidden' name='_csrf' value=csrfToken)
+        div 
+            label(for="title") Title:
+            input(type="text" name="title" required)
+        div
+            label(for="rating") Gimme a rating:
+            input(type="number" name="rating" required)
+        div 
+            label(for="content") Enter your review here:
+            textarea(name="content" required)
+        button(type="submit") Create review
+    a(href=`/games/${gameId}/reviews`) Cancel

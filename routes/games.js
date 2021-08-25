@@ -1,12 +1,15 @@
 var express = require('express');
 var router = express.Router();
-const { asyncHandler, csrfProtection } = require('./utils.js');
+const { validationResult } = require('express-validator');
+const { asyncHandler, csrfProtection, reviewValidators } = require('./utils.js');
 const db = require('../db/models');
 const {restoreUser, requireAuth} = require('../auth.js')
 
 //Gets all games in the games table
 router.get('/', asyncHandler(async(req, res, next) => {
-    const allGames = await db.Game.findAll();
+    const allGames = await db.Game.findAll({
+        order: [['name']]
+    });
 
     res.render('all-games', {allGames});
 }));
@@ -50,13 +53,38 @@ router.get('/:id(\\d+)/reviews/new',
     restoreUser,
     requireAuth,
     asyncHandler(async(req, res ,next) => {
-        res.render('review-form')
+        res.render('review-form', {
+            gameId: req.params.id,
+            csrfToken: req.csrfToken()
+        })
     })
 )
 
 //Create a review for a specific game
-router.post("/:id(\\d+)/review", asyncHandler(async(req, res ,next) => {
-
+router.post("/:id(\\d+)/reviews", csrfProtection, restoreUser, requireAuth, asyncHandler(async(req, res ,next) => {
+    const {title, rating, content} = req.body;
+    const reviewErrors = validationResult(req);
+    console.lo
+    if (reviewErrors.isEmpty()){
+        const createReview = await db.Review.create({
+            title,
+            rating,
+            content,
+            gameId: req.params.id,
+            userId: req.session.auth.userId
+        });
+        res.redirect(`/games/${req.params.id}/reviews`)
+    }else{
+        const errors = validationErrors.array().map(error => error.msg);
+        res.render('review-form',
+            {
+                gameId: req.params.id,
+                csrfToken: req.csrfToken(),
+                errors
+            }
+        )
+//        res.redirect()
+    }
 }));
 
 module.exports = router;
