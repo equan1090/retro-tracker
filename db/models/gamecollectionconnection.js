@@ -11,7 +11,14 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {});
   GameCollectionConnection.associate = function(models) {
-    //NOTE THAT THERE WILL BE NO ASSOCIATIONS HERE!!
+    //We added a connection to Collection for our on delete.
+    // REMEMBER TO ADD APPROPRIATE CONNECTION!!!!
+    // REMEMBER TO ADD APPROPRIATE CONNECTION!!!!
+    // REMEMBER TO ADD APPROPRIATE CONNECTION!!!!
+    // REMEMBER TO ADD APPROPRIATE CONNECTION!!!!
+    // REMEMBER TO ADD APPROPRIATE CONNECTION!!!!
+    // REMEMBER TO ADD APPROPRIATE CONNECTION!!!!
+
   };
   return GameCollectionConnection;
 };
