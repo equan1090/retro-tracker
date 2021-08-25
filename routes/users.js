@@ -16,12 +16,18 @@ router.get('/:id(\\d+)', restoreUser, requireAuth, asyncHandler( async(req, res,
   const userId = req.params.id;
   const specifiedUser = await db.User.findByPk(userId);
 
+  const collections = await db.Collection.findAll({
+    where: { userId },
+    include: db.Game
+    });
+
   if (userId == req.session.auth.userId) {
     if (specifiedUser) {
       console.log(specifiedUser);
       res.render('users-page', {
         userProfilePage: true,
-        specifiedUser
+        specifiedUser,
+        collections
       });
     } else {
       console.log(`No user with id ${userId} exists`);
@@ -111,6 +117,17 @@ router.post('/register', csrfProtection, userValidators, asyncHandler( async (re
 
     user.hashedPassword = await bcrypt.hash(password, 10);
     await user.save();
+
+    const collections = ['Wishlist', 'Playing', 'Played' ]
+
+    for (let i=0; i < collections.length; i++) {
+      await db.Collection.create({
+      name: collections[i],
+      userId: user.id
+    });
+    }
+
+
     loginUser(req, res, user);
     res.redirect('/');
 
