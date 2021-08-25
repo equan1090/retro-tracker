@@ -1,0 +1,11 @@
+extends specific-game
+block moreContent
+    br
+    h2 Reviews
+    br
+    each review in specificGame.Reviews
+        div
+            ul
+                li: h3 #{review.title} by #{review.User.username}
+                li: h4 Rating: #{review.rating}
+                li: p= review.content
