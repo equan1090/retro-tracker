@@ -3,15 +3,24 @@ var router = express.Router();
 const { validationResult } = require('express-validator');
 const { asyncHandler, csrfProtection, reviewValidators } = require('./utils.js');
 const db = require('../db/models');
-const {restoreUser, requireAuth} = require('../auth.js')
+const {requireAuth} = require('../auth.js')
 
 //Gets all games in the games table
-router.get('/', restoreUser, asyncHandler(async(req, res, next) => {
+router.get('/', asyncHandler(async(req, res, next) => {
     const allGames = await db.Game.findAll({
         order: [['name']]
     });
 
-    res.render('all-games', {allGames});
+    if (req.session.auth) {
+        const allCollections = await db.Collection.findAll({
+            where: {userId: req.session.auth.userId}
+        });
+        res.render('all-games', {allCollections, allGames});
+    } else {
+        console.log(req.session.auth)
+        res.render('all-games', {allGames});
+    }
+
 }));
 
 // //Gets a specific game based on id
@@ -27,7 +36,7 @@ router.get('/:id(\\d+)', asyncHandler(async(req, res, next) => {
 
 //TODO
 //Showing all reviews for a specific game
-router.get('/:id(\\d+)/reviews', restoreUser, asyncHandler(async (req, res, next) => {
+router.get('/:id(\\d+)/reviews', asyncHandler(async (req, res, next) => {
     const specificGame = await db.Game.findByPk(req.params.id ,{
         // Here we get the specific game's review and the user who wrote it
         include: [
@@ -52,7 +61,6 @@ router.get('/:id(\\d+)/reviews', restoreUser, asyncHandler(async (req, res, next
 //Gets a new form to create a review
 router.get('/:id(\\d+)/reviews/new',
     csrfProtection,
-    restoreUser,
     requireAuth,
     asyncHandler(async(req, res ,next) => {
         res.render('review-form', {
@@ -63,7 +71,7 @@ router.get('/:id(\\d+)/reviews/new',
 )
 
 //Create a review for a specific game
-router.post("/:id(\\d+)/reviews", csrfProtection, restoreUser, requireAuth, asyncHandler(async(req, res ,next) => {
+router.post("/:id(\\d+)/reviews", csrfProtection, requireAuth, asyncHandler(async(req, res ,next) => {
     const {title, rating, content} = req.body;
     const reviewErrors = validationResult(req);
     console.lo

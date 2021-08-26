@@ -19,6 +19,7 @@ router.get('/:id(\\d+)', asyncHandler(async(req, res, next) => {
   });
 
   if(specificCollection) {
+      // res.json(specificCollection.Game)
     res.render('specific-collection', {specificCollection});
   }else{
     next(new Error("Collection not found"));

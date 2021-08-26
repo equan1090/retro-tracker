@@ -8,6 +8,7 @@ block content
                 td Platform
                 td Publisher
                 td More Info
+                td
         tbody
             each game in allGames
                 tr
@@ -16,5 +17,9 @@ block content
                     td= game.platform
                     td= game.publisher
                     td: a(href=`/games/${game.id}`) Click to see more info
-
-
+                    if locals.authenticated
+                        td
+                            select
+                                each collection in allCollections
+                                    option(value=collection.id)= collection.name
+                            button Add game
