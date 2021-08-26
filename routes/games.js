@@ -27,7 +27,7 @@ router.get('/:id(\\d+)', asyncHandler(async(req, res, next) => {
 
 //TODO
 //Showing all reviews for a specific game
-router.get('/:id(\\d+)/reviews', asyncHandler(async (req, res, next) => {
+router.get('/:id(\\d+)/reviews', restoreUser, asyncHandler(async (req, res, next) => {
     const specificGame = await db.Game.findByPk(req.params.id ,{
         // Here we get the specific game's review and the user who wrote it
         include: [
@@ -40,6 +40,7 @@ router.get('/:id(\\d+)/reviews', asyncHandler(async (req, res, next) => {
     })
 
     if(specificGame){
+
         res.render('specific-game-reviews', {specificGame})
         //res.json({specificGame})
     } else{
