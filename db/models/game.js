@@ -25,7 +25,7 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "gameId"
     });
     Game.hasMany(models.Review, {foreignKey: "gameId"});
-    
+
   };
   return Game;
 };

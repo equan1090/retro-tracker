@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       otherKey: "gameId",
       foreignKey: "collectionId"
     });
-
+    Collection.hasMany(models.GameCollectionConnection, {foreignKey: "collectionId", onDelete: 'CASCADE', hooks: true })
   };
   return Collection;
 };
