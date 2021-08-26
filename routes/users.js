@@ -1,5 +1,6 @@
 var express = require('express');
 const { validationResult } = require('express-validator');
+const { ResultWithContext } = require('express-validator/src/chain');
 var router = express.Router();
 const { loginUser, logoutUser, requireAuth } = require('../auth.js')
 
@@ -21,27 +22,23 @@ router.get('/:id(\\d+)', asyncHandler( async(req, res, next) =>  {
     include: db.Game
     });
 
+    console.log(req.session)
     // Checks if you are in your own profile page
-    if (req.session.auth) {
-      if (userId == req.locals.user.userId) {
-        if (specifiedUser) {
-          console.log(specifiedUser);
-          return res.render('users-page', {
-            userProfilePage: true,
-            specifiedUser,
-            collections,
-          });
-        } else {
-          console.log(`No user with id ${userId} exists`);
-        }
-      } else {
-        return res.render('users-page', {
-          userProfilePage: false,
-          specifiedUser,
-          collections
-        });
-      };
-    };
+    if (req.session.auth && userId == req.session.auth.userId && specifiedUser) {
+      res.render('users-page', {
+        userProfilePage: true,
+        specifiedUser,
+        collections,
+      })
+    } else if ((!req.session.auth && specifiedUser) || (req.session.auth && userId != req.session.auth.userId && specifiedUser)) {
+      res.render('users-page', {
+        userProfilePage: false,
+        specifiedUser,
+        collections,
+      })
+    } else {
+      next(new Error('This user does not exist'))
+    }
 }));
 
 router.get('/login', csrfProtection, asyncHandler(async(req, res, next) => {
