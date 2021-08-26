@@ -9,3 +9,7 @@ block moreContent
                 li: h3 #{review.title} by #{review.User.username}
                 li: h4 Rating: #{review.rating}
                 li: p= review.content
+                if authenticated
+                    if user.id == review.userId
+                        button Delete
+                        a(href=`/reviews/${review.id}/edit`) Edit
