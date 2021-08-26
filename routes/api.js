@@ -6,7 +6,6 @@ const { asyncHandler } = require('./utils.js');
 const db = require(`../db/models`);
 
 router.delete('/reviews/:id(\\d+)', requireAuth, asyncHandler(async(req, res, next) => {
-    console.log("In the delete statement")
     const review = await db.Review.findByPk(req.params.id);
     const sessionUserId = req.session.auth.userId;
     if (review){
@@ -21,5 +20,15 @@ router.delete('/reviews/:id(\\d+)', requireAuth, asyncHandler(async(req, res, ne
     }
 }))
 
+router.post('/collections/:id(\\d+)', asyncHandler(async(req, res, next) => {
+    const {gameId} = req.body;
+    const newGameCollectionConnection = await db.GameCollectionConnection.create(
+        {
+            collectionId: req.params.id,
+            gameId
+        }
+    );
+    res.json(newGameCollectionConnection);
+}))
 
 module.exports = router;
