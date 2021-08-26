@@ -1,4 +1,6 @@
 extends specific-game
+append head
+    script(src="/javascripts/specific-game-review.js" type="module")
 block moreContent
     br
     h2 Reviews
@@ -11,5 +13,5 @@ block moreContent
                 li: p= review.content
                 if authenticated
                     if user.id == review.userId
-                        button Delete
+                        button(class="reviewDelete" id=review.id) Delete
                         a(href=`/reviews/${review.id}/edit`) Edit

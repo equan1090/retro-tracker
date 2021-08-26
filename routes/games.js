@@ -6,7 +6,7 @@ const db = require('../db/models');
 const {restoreUser, requireAuth} = require('../auth.js')
 
 //Gets all games in the games table
-router.get('/', asyncHandler(async(req, res, next) => {
+router.get('/', restoreUser, asyncHandler(async(req, res, next) => {
     const allGames = await db.Game.findAll({
         order: [['name']]
     });
