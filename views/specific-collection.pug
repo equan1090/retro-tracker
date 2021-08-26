@@ -1,6 +1,8 @@
 extends layout
+append head
+    script(src="/javascripts/delete-game.js" type="module")
 block content
-    h1= specificCollection.name
+    h1(id=specificCollection.id, class="collectionName")= specificCollection.name
     p= specificCollection.User.username
     table
         thead
@@ -10,14 +12,19 @@ block content
                 td Platform
                 td Publisher
                 td More Info
+                td
         tbody
             each game in specificCollection.Games
-                tr
+                tr(id=game.id)
                     td= game.name
                     td= game.description
                     td= game.platform
                     td= game.publisher
-                    td: a(href=`/games/${game.id}`) Click to see more info
+                    td: a(href=`/games/${game.id}`) Click to see more
+                    td
+                        if locals.authenticated
+                            if locals.user.id == specificCollection.userId
+                                Button.removeGame Delete
     if locals.authenticated
         if locals.user.id == specificCollection.userId
             a(href='/games') Add game
