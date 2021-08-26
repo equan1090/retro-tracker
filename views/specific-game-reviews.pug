@@ -12,3 +12,4 @@ block moreContent
                 if authenticated
                     if user.id == review.userId
                         button Delete
+                        a(href=`/reviews/${review.id}/edit`) Edit
