@@ -1,4 +1,6 @@
 extends layout
+append head
+    script(src="/javascripts/specific-collection.js" type="module")
 block content
     table
         thead
@@ -11,7 +13,7 @@ block content
                 td
         tbody
             each game in allGames
-                tr
+                tr(id=game.id)
                     td= game.name
                     td= game.description
                     td= game.platform
@@ -19,7 +21,7 @@ block content
                     td: a(href=`/games/${game.id}`) Click to see more info
                     if locals.authenticated
                         td
-                            select
+                            select(class=`select-${game.id}`)
                                 each collection in allCollections
                                     option(value=collection.id)= collection.name
-                            button Add game
+                            button.addGameBtn Add game

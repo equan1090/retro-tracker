@@ -18,4 +18,6 @@ block content
                     td= game.platform
                     td= game.publisher
                     td: a(href=`/games/${game.id}`) Click to see more info
-    a(href='/games') Add game
+    if locals.authenticated
+        if locals.user.id == specificCollection.userId
+            a(href='/games') Add game
