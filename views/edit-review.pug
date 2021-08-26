@@ -1,0 +1,16 @@
+extends layout
+block content
+    h1 Create Review
+    form(action=`/reviews/${reviewId}` method='post')
+        input(type='hidden' name='_csrf' value=csrfToken)
+        div 
+            label(for="title") Title:
+            input(type="text" name="title" value= review.title required)
+        div
+            label(for="rating") Gimme a rating:
+            input(type="number" name="rating" value= review.rating required)
+        div 
+            label(for="content") Enter your review here:
+            textarea(name="content" value= review.content required)
+        button(type="submit") Create review
+    a(href=`/reviews/${reviewId}`) Cancel
