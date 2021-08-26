@@ -39,17 +39,17 @@ app.use(
     saveUninitialized: false,
     resave: false,
   })
-);
+  );
 
-// create Session table if it doesn't already exist
-store.sync();
-app.use(restoreUser)
-app.use('/', indexRouter);
-app.use('/api', apiRouter);
-app.use('/collections', collectionsRouter);
-app.use('/games', gamesRouter);
-app.use('/reviews', reviewsRouter);
-app.use('/users', usersRouter);
+  // create Session table if it doesn't already exist
+  store.sync();
+  app.use(restoreUser)
+  app.use('/', indexRouter);
+  app.use('/api', apiRouter);
+  app.use('/collections', collectionsRouter);
+  app.use('/games', gamesRouter);
+  app.use('/reviews', reviewsRouter);
+  app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

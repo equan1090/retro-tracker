@@ -1,11 +1,11 @@
 var express = require('express');
 const { validationResult } = require('express-validator');
 var router = express.Router();
-const { loginUser, logoutUser, restoreUser, requireAuth } = require('../auth.js');
+const { loginUser, logoutUser, requireAuth } = require('../auth.js');
 const { asyncHandler } = require('./utils.js');
 const db = require(`../db/models`);
 
-router.delete('/reviews/:id(\\d+)', restoreUser, requireAuth, asyncHandler(async(req, res, next) => {
+router.delete('/reviews/:id(\\d+)', requireAuth, asyncHandler(async(req, res, next) => {
     console.log("In the delete statement")
     const review = await db.Review.findByPk(req.params.id);
     const sessionUserId = req.session.auth.userId;

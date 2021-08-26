@@ -1,14 +1,14 @@
 var express = require('express');
 const { validationResult } = require('express-validator');
 var router = express.Router();
-const { loginUser, logoutUser, restoreUser, requireAuth } = require('../auth.js');
+const { loginUser, logoutUser, requireAuth } = require('../auth.js');
 const { asyncHandler, csrfProtection } = require('./utils.js');
 const db = require(`../db/models`);
 
 //present a form that will edit a review
 //TODO: Checks to make sure that the user that owns the
 //  review is the only one who can edit.
-router.get('/:id/edit', csrfProtection, restoreUser, requireAuth, asyncHandler( async (req, res, next) => {
+router.get('/:id/edit', csrfProtection, requireAuth, asyncHandler( async (req, res, next) => {
     const review = await db.Review.findByPk(req.params.id);
     if (review){
         console.log(`\n ${req.session.auth.userId} \n ${review.userId}`);
@@ -41,7 +41,7 @@ router.get('/:id', asyncHandler( async (req, res, next) => {
 }));
 
 //Edit a review with a given id
-router.post('/:id', csrfProtection, restoreUser, requireAuth, asyncHandler( async (req, res, next) => {
+router.post('/:id', csrfProtection, requireAuth, asyncHandler( async (req, res, next) => {
     const review = await db.Review.findByPk(req.params.id);
     const {title, rating, content} = req.body;
     if (review){
