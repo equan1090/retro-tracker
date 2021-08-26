@@ -31,4 +31,18 @@ router.post('/collections/:id(\\d+)', asyncHandler(async(req, res, next) => {
     res.json(newGameCollectionConnection);
 }))
 
+router.delete('/collections/:id(\\d+)/games', asyncHandler(async (req, res, next) => {
+    const { gameId } = req.body;
+    const collection = await db.GameCollectionConnection.findOne({
+        where: { collectionId:req.params.id, gameId }
+
+    })
+    await collection.destroy();
+    res.json({"Message": "Game deleted!"});
+
+}))
+
+
+
+
 module.exports = router;
