@@ -2,6 +2,7 @@ extends specific-game
 append head
     script(src="/javascripts/specific-game-review.js" type="module")
 block moreContent
+    div: a(href=`/games/${specificGame.id}/reviews/new`) Add a Review
     br
     h2 Reviews
     br
