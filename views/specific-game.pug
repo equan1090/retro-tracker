@@ -1,9 +1,11 @@
 extends layout
 block content
     h1= specificGame.name
-    p= specificGame.description
+    div
+        //- img(class="game-image" src= game.image alt="")
+        p= specificGame.description
     ul
         li= specificGame.platform
         li= specificGame.publisher
-
+    a(href=`/games/${specificGame.id}/reviews` id='reviews-link') Reviews
     block moreContent
