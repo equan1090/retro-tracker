@@ -1,8 +1,8 @@
 extends layout
 block content
     h1= specificGame.name
-    div
-        img(src= game.image alt="Title cover of game")
+    div(class='game-section')
+        img(src=specificGame.image alt='Title cover of game')
         p= specificGame.description
     ul
         li= specificGame.platform
