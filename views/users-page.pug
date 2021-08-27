@@ -2,7 +2,6 @@ extends layout
 
 block content
     h1= `${specifiedUser.username}'s Collections`
-        ul
-            each collection in collections
-                h2
-                    a(href=`/collections/${collection.id}`)= `${collection.name}`
+    ul
+        each collection in collections
+            h4: a(href=`/collections/${collection.id}`)= `${collection.name}`

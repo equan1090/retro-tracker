@@ -7,6 +7,7 @@ block content
     table
         thead
             tr
+                td
                 td Name
                 td Description
                 td Platform
@@ -16,6 +17,7 @@ block content
         tbody
             each game in specificCollection.Games
                 tr(id=game.id)
+                    td: img(class='game-image' src=game.image, alt="")
                     td= game.name
                     td= game.description
                     td= game.platform

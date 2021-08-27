@@ -2,22 +2,27 @@ extends layout
 
 block content
     h1= title
+    if errors
+        ul
+            li The following errors have occured 
+            each error in errors
+                li= error
     form(action='/users/register' method='post')
         input(type='hidden' name='_csrf' value=csrfToken)
-        div
+        div.textContainer
             label(for='username') Username
             input(type='text' name='username' value=user.username required)
-        div
+        div.textContainer
             label(for='email') Email
             input(type='email' name='email' value=user.email required)
-        div
+        div.textContainer
             label(for='password') Password
             input(type='password' name='password' value=user.password required)
-        div
+        div.textContainer
             label(for='confirmPassword') Confirm Password
             input(type='password' name='confirmPassword' required)
-        div
+        div.buttonContainer
             button(type='submit') Register
             a(href='/') Cancel
-    div 
+    div.registerContainer
         a(href='/users/login') Have an account? Log in here!

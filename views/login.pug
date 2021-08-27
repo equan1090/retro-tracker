@@ -4,10 +4,10 @@ block content
     if demoUser
         form(action='/users/login' method='post')
             input(type='hidden' name='_csrf' value=csrfToken)
-            div.emailContainer
+            div.textContainer
                 label(for='email') Email
                 input(type='email' name='email' value=demoUser.email required)
-            div.passwordContainer
+            div.textContainer
                 label(for='password') Password
                 input(type='password' name='password' value=demoUserPassword required)
             div.buttonContainer
@@ -17,12 +17,17 @@ block content
             a(href='/users/register') Don't have an account? Register here!
 
     else
+        if errors
+            ul
+                li The following errors have occured 
+                    each error in errors
+                        li= error
         form(action='/users/login' method='post')
             input(type='hidden' name='_csrf' value=csrfToken)
-            div.emailContainer
+            div.textContainer
                 label(for='email') Email
                 input(type='email' name='email' required)
-            div.passwordContainer
+            div.textContainer
                 label(for='password') Password
                 input(type='password' name='password' required)
             div.buttonContainer

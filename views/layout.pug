@@ -2,18 +2,19 @@ doctype html
 html
   head
       block head
-        title="Express Starter App"
+        title="Retro Game Tracker"
         link(rel='stylesheet' href='/stylesheets/reset.css')
+        link(rel='stylesheet' href='/stylesheets/images.css')
   body
-    nav
-      a(href="/") Home
-      a(href="") Collection
+    nav.nav
+      a(class='nav-link-active' href="/") Home
+      a(class='nav-link-active' href="") Collection
       if locals.authenticated
-        a(href="/users/logout") Log out
-        a(href="#") My Profile
+        a(class='nav-link-active' href="/users/logout") Log out
+        a(class='nav-link-active' href="#") My Profile
       else
-        a(href="/users/login") Log In
-        a(href="/users/register") Register
-        a(href="/users/login/demo") Demo User
+        a(class='nav-link-active' href="/users/login") Log In
+        a(class='nav-link-active' href="/users/register") Register
+        a(class='nav-link-active' href="/users/login/demo") Demo User
 
     block content
