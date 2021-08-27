@@ -3,9 +3,6 @@
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
-}
 
 * {
   box-sizing: border-box;
@@ -75,7 +72,7 @@ h3{
   background: linear-gradient(90deg, #0700b8 0%, #00ff88 100%);
   color:lightgray;
   text-align: center;
-  font-family: Arial, Helvetica, sans-serif; 
+  font-family: Arial, Helvetica, sans-serif;
   /* border: solid black; */
   box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
   border-radius: 12px;
@@ -89,7 +86,7 @@ h4{
   background: linear-gradient(90deg, #0700b8 0%, #00ff88 100%);
   color:lightgray;
   text-align: center;
-  font-family: Arial, Helvetica, sans-serif; 
+  font-family: Arial, Helvetica, sans-serif;
   /* border: solid black; */
   box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
   border-radius: 12px;
@@ -103,7 +100,7 @@ h5{
   background: linear-gradient(90deg, #0d07b8 0%, #00ff88 100%);
   color:lightgray;
   text-align: center;
-  font-family: Arial, Helvetica, sans-serif; 
+  font-family: Arial, Helvetica, sans-serif;
   /* border: solid black; */
   box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
   border-radius: 12px;
@@ -117,7 +114,7 @@ h6{
   background: linear-gradient(90deg, #0700b8 0%, #00ff88 100%);
   color:lightgray;
   text-align: center;
-  font-family: Arial, Helvetica, sans-serif; 
+  font-family: Arial, Helvetica, sans-serif;
   /* border: solid blue; */
   box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
   border-radius: 12px;
@@ -183,4 +180,9 @@ p{
   margin:30px auto;
   padding: 1.5em;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+a {
+  /* font-size: 10px; */
+  color: #00B7FF;
 }
