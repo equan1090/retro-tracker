@@ -188,19 +188,19 @@ nav{
   display: none;
 }
 
-p{
+.contentMain{
   width: 80%;
   margin:30px auto;
   padding: 1.5em;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 }
-
+/* 
 ul{
   width: 80%;
   margin:30px auto;
   padding: 1.5em;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
-}
+} */
 
 form {
   display: flex;
@@ -228,7 +228,7 @@ justify-content: center;
 a{
   display: flex;
   justify-content: center;
-  width: 120%;
+  width: fit-content;
   height: 25px;
   padding: 10px;
   text-align: center;
@@ -255,4 +255,18 @@ tr:hover {
 .tableContainer {
   display: flex;
   justify-content: center;
+}
+
+.contentMain{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+
+.gameInfo{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
 }
