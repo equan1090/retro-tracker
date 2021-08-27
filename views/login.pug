@@ -1,16 +1,32 @@
-extends layout.pug 
+extends layout.pug
 block content
-    h1= title 
-    form(action='/users/login' method='post')
-        input(type='hidden' name='_csrf' value=csrfToken)
+    h1= title
+    if demoUser
+        form(action='/users/login' method='post')
+            input(type='hidden' name='_csrf' value=csrfToken)
+            div
+                label(for='email') Email
+                input(type='email' name='email' value=demoUser.email required)
+            div
+                label(for='password') Password
+                input(type='password' name='password' value=demoUser.password required)
+            div
+                button(type='submit') Log in
+                a(href='/') Cancel
         div
-            label(for='email') Email
-            input(type='email' name='email' required)
+            a(href='/users/register') Don't have an account? Register here!
+
+    else
+        form(action='/users/login' method='post')
+            input(type='hidden' name='_csrf' value=csrfToken)
+            div
+                label(for='email') Email
+                input(type='email' name='email' required)
+            div
+                label(for='password') Password
+                input(type='password' name='password' required)
+            div
+                button(type='submit') Log in
+                a(href='/') Cancel
         div
-            label(for='password') Password
-            input(type='password' name='password' required)
-        div
-            button(type='submit') Log in
-            a(href='/') Cancel
-    div 
-        a(href='/users/register') Don't have an account? Register here!
+            a(href='/users/register') Don't have an account? Register here!
