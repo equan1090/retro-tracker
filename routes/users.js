@@ -149,7 +149,7 @@ router.post('/register', csrfProtection, userValidators, asyncHandler( async (re
     user.hashedPassword = await bcrypt.hash(password, 10);
     await user.save();
 
-    const collections = ['Wishlist', 'Playing', 'Played' ]
+    const collections = ['Wishlist', 'Playing', 'Completed' ]
 
     for (let i=0; i < collections.length; i++) {
       await db.Collection.create({
