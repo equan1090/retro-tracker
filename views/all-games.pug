@@ -4,19 +4,22 @@ append head
 block content
     each game in allGames 
         div.contentMain
-            div.gameInfo
-                img(class="game-image" src= game.image alt="")
-                h5= game.name
-            p= game.description
-            div.miscGameInfo
-                ul 
-                    li= game.platform 
-                    li= game.publisher
-            a(href=`/games/${game.id}`) More info
-            select(class=`select-${game.id}`)
-                each collection in allCollections
-                    option(value=collection.id)= collection.name                       
-                button.addGameBtn Add game
+            h1= game.name
+            div.content1
+                div.gameInfo
+                    img(class="game-image" src= game.image alt="")
+                p= game.description
+                div.miscGameInfo
+                    h3= game.publisher
+                    h3= game.platform
+            div.content2
+                
+                a(href=`/games/${game.id}`) More info
+                if locals.authenticated
+                    select(class=`select-${game.id}`)
+                        each collection in allCollections
+                            option(value=collection.id)= collection.name                       
+                    button.addGameBtn Add game
 
     //- div.tableContainer
     //-     table

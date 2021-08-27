@@ -261,7 +261,14 @@ tr:hover {
   display:flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   gap: 50px;
+}
+.content1{
+  display:flex;
+  flex-direction: row;
+  gap: 50px;
+  align-items: center;
 }
 
 .gameInfo{
