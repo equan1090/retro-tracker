@@ -50,18 +50,17 @@ router.get('/login', csrfProtection, asyncHandler(async(req, res, next) => {
 }))
 
 router.get('/login/demo', csrfProtection, asyncHandler(async (req, res, next) => {
-  const demoUser = db.User.findOne({
+  const demoUser = await db.User.findOne({
     where: {username:"demo"},
   })
+
   const demoUserPassword = 'Abc123!@-';
   res.render('login', {
     title: 'Log in to RetroGameTracker',
     csrfToken: req.csrfToken(),
-    demoUser
+    demoUser,
+    demoUserPassword
   })
-
-
-
 
 }))
 
