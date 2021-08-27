@@ -1,4 +1,3 @@
 .game-section {
-  display: inline-block;
-
+  display: flex;
 }
