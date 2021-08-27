@@ -4,13 +4,13 @@ block content
     if demoUser
         form(action='/users/login' method='post')
             input(type='hidden' name='_csrf' value=csrfToken)
-            div
+            div.emailContainer
                 label(for='email') Email
                 input(type='email' name='email' value=demoUser.email required)
-            div
+            div.passwordContainer
                 label(for='password') Password
                 input(type='password' name='password' value=demoUserPassword required)
-            div
+            div.buttonContainer
                 button(type='submit') Log in
                 a(href='/') Cancel
         div
@@ -19,14 +19,14 @@ block content
     else
         form(action='/users/login' method='post')
             input(type='hidden' name='_csrf' value=csrfToken)
-            div
+            div.emailContainer
                 label(for='email') Email
                 input(type='email' name='email' required)
-            div
+            div.passwordContainer
                 label(for='password') Password
                 input(type='password' name='password' required)
-            div
+            div.buttonContainer
                 button(type='submit') Log in
                 a(href='/') Cancel
-        div
+        div.button
             a(href='/users/register') Don't have an account? Register here!
