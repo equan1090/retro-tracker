@@ -4,29 +4,30 @@ append head
 block content
     h1(id=specificCollection.id, class="collectionName")= specificCollection.name
     p= specificCollection.User.username
-    table
-        thead
-            tr
-                td
-                td Name
-                td Description
-                td Platform
-                td Publisher
-                td More Info
-                td
-        tbody
-            each game in specificCollection.Games
-                tr(id=game.id)
-                    td: img(class='game-image' src=game.image, alt="")
-                    td= game.name
-                    td= game.description
-                    td= game.platform
-                    td= game.publisher
-                    td: a(href=`/games/${game.id}`) Click to see more
-                    td
-                        if locals.authenticated
-                            if locals.user.id == specificCollection.userId
-                                Button.removeGame Delete
-    if locals.authenticated
-        if locals.user.id == specificCollection.userId
-            a(href='/games') Add game
+    div.tableContainer
+        table
+            thead
+                tr
+                    td.tableItem
+                    td.tableItem Name
+                    td.tableItem Description
+                    td.tableItem Platform
+                    td.tableItem Publisher
+                    td.tableItem
+                    td.tableItem
+            tbody
+                each game in specificCollection.Games
+                    tr(id=game.id)
+                        td.tableItem: img(class='game-image' src=game.image, alt="")
+                        td.tableItem= game.name
+                        td.tableItem= game.description
+                        td.tableItem= game.platform
+                        td.tableItem= game.publisher
+                        td.tableItem: a(href=`/games/${game.id}`) More info
+                        td.tableItem
+                            if locals.authenticated
+                                if locals.user.id == specificCollection.userId
+                                    Button.removeGame Delete
+        if locals.authenticated
+            if locals.user.id == specificCollection.userId
+                a(href='/games') Add game

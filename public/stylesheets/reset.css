@@ -149,7 +149,7 @@ nav{
   border:solid black;
   /* font-size: 24px;
   color: lightgray;
-  
+
   text-align: center;
   width: 1em;
   transition-property: font-size; */
@@ -157,7 +157,7 @@ nav{
   padding: 1em 1em;
   margin: 1.0em 1.0em;
   text-decoration: none;
-  transition-duration: .5s; 
+  transition-duration: .5s;
   display: block;
   width: fit-content;
   height: 25px;
@@ -226,8 +226,9 @@ display: flex;
 justify-content: center;
 }
 a{
-  display: block;
-  width: fit-content;
+  display: flex;
+  justify-content: center;
+  width: 120%;
   height: 25px;
   padding: 10px;
   text-align: center;
@@ -238,4 +239,20 @@ a{
 
   line-height: 25px;
   text-decoration: none;
+}
+.customButton {
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+}
+.tableItem {
+  padding: 2.2rem;
+  border-bottom: 1px solid #ddd;
+}
+tr:hover {
+  background-color: yellow;
+}
+.tableContainer {
+  display: flex;
+  justify-content: center;
 }

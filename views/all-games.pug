@@ -2,28 +2,29 @@ extends layout
 append head
     script(src="/javascripts/add-game.js" type="module")
 block content
-    table
-        thead
-            tr
-                td
-                td Name
-                td Description
-                td Platform
-                td Publisher
-                td More Info
-                td
-        tbody
-            each game in allGames
-                tr(id=game.id)
-                    td: img(class="game-image" src= game.image alt="")
-                    td= game.name
-                    td= game.description
-                    td= game.platform
-                    td= game.publisher
-                    td: a(href=`/games/${game.id}`) Click to see more info
-                    if locals.authenticated
-                        td
-                            select(class=`select-${game.id}`)
-                                each collection in allCollections
-                                    option(value=collection.id)= collection.name
-                            button.addGameBtn Add game
+    div.tableContainer
+        table
+            thead
+                tr
+                    td.tableItem
+                    td.tableItem Name
+                    td.tableItem Description
+                    td.tableItem Platform
+                    td.tableItem Publisher
+                    td.tableItem
+                    td.tableItem
+            tbody
+                each game in allGames
+                    tr(id=game.id)
+                        td.tableItem: img(class="game-image" src= game.image alt="")
+                        td.tableItem= game.name
+                        td.tableItem= game.description
+                        td.tableItem= game.platform
+                        td.tableItem= game.publisher
+                        td.tableItem: a(href=`/games/${game.id}`) More info
+                        if locals.authenticated
+                            td
+                                select(class=`select-${game.id}`)
+                                    each collection in allCollections
+                                        option(value=collection.id)= collection.name
+                                button.addGameBtn Add game
