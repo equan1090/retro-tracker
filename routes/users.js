@@ -22,7 +22,6 @@ router.get('/:id(\\d+)', asyncHandler( async(req, res, next) =>  {
     include: db.Game
     });
 
-    console.log(req.session)
     // Checks if you are in your own profile page
     if (req.session.auth && userId == req.session.auth.userId && specifiedUser) {
       res.render('users-page', {
@@ -46,8 +45,25 @@ router.get('/login', csrfProtection, asyncHandler(async(req, res, next) => {
   res.render('login', {
     title: 'Log in to RetroGameTracker',
     csrfToken: req.csrfToken(),
+    demoUser: false
   })
 }))
+
+router.get('/login/demo', csrfProtection, asyncHandler(async (req, res, next) => {
+  const demoUser = await db.User.findOne({
+    where: {username:"demo"},
+  })
+
+  const demoUserPassword = 'Abc123!@-';
+  res.render('login', {
+    title: 'Log in to RetroGameTracker',
+    csrfToken: req.csrfToken(),
+    demoUser,
+    demoUserPassword
+  })
+
+}))
+
 
 router.post('/login', csrfProtection, asyncHandler(async(req, res, next) => {
   const {
@@ -113,7 +129,6 @@ router.post('/register', csrfProtection, userValidators, asyncHandler( async (re
 
 
   const validationErrors = validationResult(req);
-  console.log(validationErrors)
   if (validationErrors.isEmpty()){
 
     user.hashedPassword = await bcrypt.hash(password, 10);
