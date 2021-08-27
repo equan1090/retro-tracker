@@ -16,6 +16,10 @@ module.exports = (sequelize, DataTypes) => {
     publisher: {
       allowNull: false,
       type: DataTypes.STRING(50)
+    },
+    image: {
+      allowNull: false,
+      type: DataTypes.STRING
     }
   }, {});
   Game.associate = function(models) {
