@@ -1,33 +1,57 @@
 extends layout
 append head
-    script(src="/javascripts/delete-game.js" type="module")
+    script(src="/javascripts/add-game.js" type="module")
 block content
-    h1(id=specificCollection.id, class="collectionName")= specificCollection.name
-    p= specificCollection.User.username
-    div.tableContainer
-        table
-            thead
-                tr
-                    td.tableItem
-                    td.tableItem Name
-                    td.tableItem Description
-                    td.tableItem Platform
-                    td.tableItem Publisher
-                    td.tableItem
-                    td.tableItem
-            tbody
-                each game in specificCollection.Games
-                    tr(id=game.id)
-                        td.tableItem: img(class='game-image' src=game.image, alt="")
-                        td.tableItem= game.name
-                        td.tableItem= game.description
-                        td.tableItem= game.platform
-                        td.tableItem= game.publisher
-                        td.tableItem: a(href=`/games/${game.id}`) More info
-                        td.tableItem
-                            if locals.authenticated
-                                if locals.user.id == specificCollection.userId
-                                    Button.removeGame Delete
+
+    h1(id=specificCollection.id, class="collectionName") #{specificCollection.User.username}'s #{specificCollection.name}
+    each game in specificCollection.Games 
+        a(href='/games') Add game
+        div(id=`${game.id}`).contentMain
+            h1= game.name
+            div.content1
+                div.gameInfo
+                    img(class="game-image" src= game.image alt="")
+                p= game.description
+                div.miscGameInfo
+                    h4= game.publisher
+                    h4= game.platform
+                    a(href=`/games/${game.id}`) More info
+            div.content2
+            if locals.authenticated
+                if locals.user.id == specificCollection.userId
+                    Button.removeGame Delete
         if locals.authenticated
             if locals.user.id == specificCollection.userId
-                a(href='/games') Add game
+//- extends layout
+//- append head
+//-     script(src="/javascripts/delete-game.js" type="module")
+//- block content
+//-     h1(id=specificCollection.id, class="collectionName")= specificCollection.name
+//-     p= specificCollection.User.username
+//-     div.tableContainer
+//-         table
+//-             thead
+//-                 tr
+//-                     td.tableItem
+//-                     td.tableItem Name
+//-                     td.tableItem Description
+//-                     td.tableItem Platform
+//-                     td.tableItem Publisher
+//-                     td.tableItem
+//-                     td.tableItem
+//-             tbody
+//-                 each game in specificCollection.Games
+//-                     tr(id=game.id)
+//-                         td.tableItem: img(class='game-image' src=game.image, alt="")
+//-                         td.tableItem= game.name
+//-                         td.tableItem= game.description
+//-                         td.tableItem= game.platform
+//-                         td.tableItem= game.publisher
+//-                         td.tableItem: a(href=`/games/${game.id}`) More info
+//-                         td.tableItem
+//-                             if locals.authenticated
+//-                                 if locals.user.id == specificCollection.userId
+//-                                     Button.removeGame Delete
+//-         if locals.authenticated
+//-             if locals.user.id == specificCollection.userId
+//-                 a(href='/games') Add game

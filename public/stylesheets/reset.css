@@ -92,8 +92,9 @@ h4{
   border-radius: 12px;
   padding:0.95em;
   font-size: 1.5em;
-  width: 60%;
+  width: 85%;
   margin: 20px auto;
+  word-wrap: break-word; 
 }
 
 h5{
@@ -259,10 +260,10 @@ tr:hover {
 
 .contentMain{
   display:flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
-  gap: 50px;
+  border-radius: 12px;
 }
 .content1{
   display:flex;
