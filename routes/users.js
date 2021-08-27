@@ -93,7 +93,10 @@ router.post('/login', csrfProtection, asyncHandler(async(req, res, next) => {
       }
     }
     errors.push("Log in failed")
-    res.send('Failure')
+    res.render('login', {
+      errors,
+      title: "Log in to RetroGameTracker"
+    })
 
   } else{
     errors = validationErrors.array().map(error => error.msg);
@@ -168,6 +171,7 @@ router.post('/register', csrfProtection, userValidators, asyncHandler( async (re
   } else {
 
     const errors = validationErrors.array().map(error => error.msg);
+    console.log(errors)
     res.render('user-register', {
       title: 'Register with RetroGameTracker',
       user,

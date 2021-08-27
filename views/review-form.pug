@@ -3,14 +3,14 @@ block content
     h1 Create Review
     form(action=`/games/${gameId}/reviews` method='post')
         input(type='hidden' name='_csrf' value=csrfToken)
-        div
+        div.textContainer
             label(for="title") Title:
             input(type="text" name="title" required)
-        div
+        div.textContainer
             label(for="rating") Gimme a rating:
             input(type="number" name="rating" required)
-        div
+        div.buttonContainer
             label(for="content") Enter your review here:
-            textarea(name="content" required)
+            textarea(name="content" rows="12" required)
         button(type="submit") Create review
     a(href=`/games/${gameId}/reviews`) Cancel
