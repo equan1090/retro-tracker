@@ -83,7 +83,13 @@ router.post('/login', csrfProtection, asyncHandler(async(req, res, next) => {
       const compare = await bcrypt.compare(password, user.hashedPassword)
       if(compare) {
         loginUser(req, res, user);
-        res.redirect(`/users/${user.id}`);
+        return req.session.save(error => {
+          if(error) {
+            next(error)
+          }else {
+            return res.redirect(`/users/${user.id}`);
+          }
+        })
       }
     }
     errors.push("Log in failed")
@@ -102,7 +108,13 @@ router.post('/login', csrfProtection, asyncHandler(async(req, res, next) => {
 
 router.get('/logout', (req, res, next) => {
   logoutUser(req, res);
-  res.redirect('/');
+  return req.session.save(error => {
+    if(error) {
+      next(error)
+    }else {
+      return res.redirect('/');
+    }
+  })
 });
 
 
@@ -145,7 +157,13 @@ router.post('/register', csrfProtection, userValidators, asyncHandler( async (re
 
 
     loginUser(req, res, user);
-    res.redirect('/');
+    return req.session.save(error => {
+      if(error) {
+        next(error)
+      }else {
+        return res.redirect('/');
+      }
+    })
 
   } else {
 
