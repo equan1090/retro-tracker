@@ -94,6 +94,6 @@ RetroGameTracker is a website that allows you to discover your next favorite gam
 ```
 
 ## Database Structure
-![image](https://user-images.githubusercontent.com/76127850/131228205-c3e1cf4b-740c-4686-9457-2c8bc310ff7c.png)
+![image](https://user-images.githubusercontent.com/76127850/131228440-cc5b362f-327c-4c05-acc4-5df784769fd3.png)
 
 
