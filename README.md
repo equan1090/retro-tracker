@@ -2,6 +2,13 @@
 
 RetroGameTracker is a website that allows you to discover your next favorite game. It allows you to organize your games, while also allowing you to rate the games yourself. You can find our website at https://retro-game-tracker.herokuapp.com/
 
+## Contributors
+* [Eric Quan](https://www.google.com)
+* [Johnny Park](https://github.com/gobugi)
+* [Anthony Seefried](https://github.com/goldeneye5671)
+* [Huan Ai](https://github.com/Huan4Ai)
+
+
 ## Development
 * Our agile process can be found on our wiki/project tab located at
     1. https://github.com/equan1090/retro-tracker/projects
@@ -85,4 +92,8 @@ RetroGameTracker is a website that allows you to discover your next favorite gam
         }
     }
 ```
+
+## Database Structure
+![image](https://user-images.githubusercontent.com/76127850/131228205-c3e1cf4b-740c-4686-9457-2c8bc310ff7c.png)
+
 
