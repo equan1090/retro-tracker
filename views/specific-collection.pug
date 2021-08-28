@@ -1,10 +1,10 @@
 extends layout
 append head
-    script(src="/javascripts/add-game.js" type="module")
+    script(src="/javascripts/delete-game.js" type="module")
 block content
 
     h1(id=specificCollection.id, class="collectionName") #{specificCollection.User.username}'s #{specificCollection.name}
-    if locals.authenticated
+        if locals.authenticated
             if locals.user.id == specificCollection.userId
                 a(href='/games') Add game
     each game in specificCollection.Games 
@@ -17,7 +17,7 @@ block content
                 div.miscGameInfo
                     h4= game.publisher
                     h4= game.platform
-                    a(href=`/games/${game.id}`) More info
+                    a(href=`/games/${game.id}/reviews`) Reviews
             div.content2
             if locals.authenticated
                 if locals.user.id == specificCollection.userId
