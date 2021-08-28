@@ -11,13 +11,13 @@ router.get('/', async(req, res, next) => {
   const games = await db.Game.findAll({
     order: sequelize.random(),
     limit: 8
+  });
 
-  })
-  console.log(games)
   res.render('index', {
     title: "Retro Game Tracker",
-    games,
-  })
+    games
+  });
 });
+
 
 module.exports = router;
