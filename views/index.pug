@@ -9,8 +9,6 @@ append head
 block content
   h1= title
   div(class='container')
-    ul(class='game-list')
-      each game in games
-        li
-          a(href=`/games/${game.id}`)
-            img(src= game.image, alt="")
+    each game in games
+      a.homePageGameButton(href=`/games/${game.id}`)
+          img.homePageGameImg(src= game.image, alt="")

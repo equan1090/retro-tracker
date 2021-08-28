@@ -92,8 +92,9 @@ h4{
   border-radius: 12px;
   padding:0.95em;
   font-size: 1.5em;
-  width: 60%;
+  width: 85%;
   margin: 20px auto;
+  word-wrap: break-word; 
 }
 
 h5{
@@ -149,7 +150,7 @@ nav{
   border:solid black;
   /* font-size: 24px;
   color: lightgray;
-  
+
   text-align: center;
   width: 1em;
   transition-property: font-size; */
@@ -157,7 +158,7 @@ nav{
   padding: 1em 1em;
   margin: 1.0em 1.0em;
   text-decoration: none;
-  transition-duration: .5s; 
+  transition-duration: .5s;
   display: block;
   width: fit-content;
   height: 25px;
@@ -188,19 +189,19 @@ nav{
   display: none;
 }
 
-p{
+.contentMain{
   width: 80%;
   margin:30px auto;
   padding: 1.5em;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 }
-
+/* 
 ul{
   width: 80%;
   margin:30px auto;
   padding: 1.5em;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
-}
+} */
 
 form {
   display: flex;
@@ -226,7 +227,8 @@ display: flex;
 justify-content: center;
 }
 a{
-  display: block;
+  display: flex;
+  justify-content: center;
   width: fit-content;
   height: 25px;
   padding: 10px;
@@ -238,4 +240,41 @@ a{
 
   line-height: 25px;
   text-decoration: none;
+}
+.customButton {
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+}
+.tableItem {
+  padding: 2.2rem;
+  border-bottom: 1px solid #ddd;
+}
+tr:hover {
+  background-color: yellow;
+}
+.tableContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.contentMain{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 12px;
+}
+.content1{
+  display:flex;
+  flex-direction: row;
+  gap: 50px;
+  align-items: center;
+}
+
+.gameInfo{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
 }

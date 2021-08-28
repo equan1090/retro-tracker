@@ -13,13 +13,13 @@ block content
             div.buttonContainer
                 button(type='submit') Log in
                 a(href='/') Cancel
-        div
+        div.customButton
             a(href='/users/register') Don't have an account? Register here!
 
     else
         if errors
             ul
-                li The following errors have occured 
+                li The following errors have occured
                     each error in errors
                         li= error
         form(action='/users/login' method='post')
@@ -33,5 +33,5 @@ block content
             div.buttonContainer
                 button(type='submit') Log in
                 a(href='/') Cancel
-        div.button
+        div.customButton
             a(href='/users/register') Don't have an account? Register here!
