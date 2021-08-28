@@ -5,12 +5,12 @@ block content
         input(type='hidden' name='_csrf' value=csrfToken)
         div.textContainer
             label(for="title") Title:
-            input(type="text" name="title" required)
+            input(type="text" name="title" size="55" required)
         div.textContainer
             label(for="rating") Gimme a rating:
-            input(type="number" name="rating" required)
+            input(type="number" name="rating" min="1" max="5" required)
         div.buttonContainer
             label(for="content") Enter your review here:
-            textarea(name="content" rows="12" required)
+            textarea(name="content" rows="12" cols="50" required)
         button(type="submit") Create review
     a(href=`/games/${gameId}/reviews`) Cancel
