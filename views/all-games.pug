@@ -12,7 +12,7 @@ block content
                 div.miscGameInfo
                     h4= game.publisher
                     h4= game.platform
-                    a(href=`/games/${game.id}`) More info
+                    a(href=`/games/${game.id}/reviews`) Reviews
             div.content2
                 if locals.authenticated
                     select(class=`select-${game.id}`)
