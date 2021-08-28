@@ -7,8 +7,8 @@ block content
                 img(src=specificGame.image alt='Title cover of game')
             p= specificGame.description
             div.miscGameInfo
-                h4= specificGame.platform
-                h4= specificGame.publisher
+                p= specificGame.platform
+                p= specificGame.publisher
         block addReviewButton
-        a(href=`/games/${specificGame.id}/reviews` id='reviews-link') Reviews
+        a(href=`/games/${specificGame.id}/reviews` id='reviews-link').nav-link-active Reviews
     block moreContent

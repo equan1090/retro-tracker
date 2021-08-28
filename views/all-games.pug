@@ -2,23 +2,24 @@ extends layout
 append head
     script(src="/javascripts/add-game.js" type="module")
 block content
-    each game in allGames 
-        div(id=`${game.id}`).contentMain
-            h1= game.name
-            div.content1
-                div.gameInfo
-                    img(class="game-image" src= game.image alt="")
-                p= game.description
-                div.miscGameInfo
-                    h4= game.publisher
-                    h4= game.platform
-                    a(href=`/games/${game.id}/reviews`) Reviews
-            div.content2
-                if locals.authenticated
-                    select(class=`select-${game.id}`)
-                        each collection in allCollections
-                            option(value=collection.id)= collection.name                       
-                    button.addGameBtn Add game
+    div.mainContainer
+        each game in allGames 
+            div(id=`${game.id}`).contentMain
+                h2= game.name
+                div.content1
+                    div.gameInfo
+                        img(class="game-image" src= game.image alt="")
+                    p= game.description
+                    div.miscGameInfo
+                        p= game.publisher
+                        p= game.platform
+                        a(href=`/games/${game.id}/reviews`).nav-link-active Reviews
+                div.content2
+                    if locals.authenticated
+                        select(class=`select-${game.id}`)
+                            each collection in allCollections
+                                option(value=collection.id)= collection.name                       
+                        button(id="addGameBtn").nav-link-active Add game
 
     //- div.tableContainer
     //-     table

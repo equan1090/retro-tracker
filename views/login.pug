@@ -11,10 +11,10 @@ block content
                 label(for='password') Password
                 input(type='password' name='password' value=demoUserPassword required)
             div.buttonContainer
-                button(type='submit') Log in
-                a(href='/') Cancel
-        div.customButton
-            a(href='/users/register') Don't have an account? Register here!
+                button(type='submit').nav-link-active Log in
+                a(href='/').nav-link-active Cancel
+        div
+            a(href='/users/register').nav-link-active Don't have an account? Register here!
 
     else
         if errors
@@ -31,7 +31,7 @@ block content
                 label(for='password') Password
                 input(type='password' name='password' required)
             div.buttonContainer
-                button(type='submit') Log in
-                a(href='/') Cancel
+                button(type='submit').nav-link-active Log in
+                a(href='/').nav-link-active Cancel
         div.customButton
-            a(href='/users/register') Don't have an account? Register here!
+            a(href='/users/register').nav-link-active Don't have an account? Register here!

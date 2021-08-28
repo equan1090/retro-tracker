@@ -2,7 +2,7 @@ extends specific-game
 append head
     script(src="/javascripts/specific-game-review.js" type="module")
 append addReviewButton
-    a.reviews-link(href=`/games/${specificGame.id}/reviews/new`) Add a Review
+    a.nav-link-active(href=`/games/${specificGame.id}/reviews/new`) Add a Review
 block moreContent
     h2 Reviews
     each review in specificGame.Reviews
