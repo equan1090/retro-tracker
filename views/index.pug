@@ -8,6 +8,7 @@ append head
 
 block content
   h1= title
+
   div(class='container')
     each game in games
       a.homePageGameButton(href=`/games/${game.id}`)
