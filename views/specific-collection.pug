@@ -4,8 +4,10 @@ append head
 block content
 
     h1(id=specificCollection.id, class="collectionName") #{specificCollection.User.username}'s #{specificCollection.name}
+    if locals.authenticated
+            if locals.user.id == specificCollection.userId
+                a(href='/games') Add game
     each game in specificCollection.Games 
-        a(href='/games') Add game
         div(id=`${game.id}`).contentMain
             h1= game.name
             div.content1
@@ -20,8 +22,6 @@ block content
             if locals.authenticated
                 if locals.user.id == specificCollection.userId
                     Button.removeGame Delete
-        if locals.authenticated
-            if locals.user.id == specificCollection.userId
 //- extends layout
 //- append head
 //-     script(src="/javascripts/delete-game.js" type="module")

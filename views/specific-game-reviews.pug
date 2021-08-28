@@ -1,18 +1,16 @@
 extends specific-game
 append head
     script(src="/javascripts/specific-game-review.js" type="module")
+append addReviewButton
+    a.reviews-link(href=`/games/${specificGame.id}/reviews/new`) Add a Review
 block moreContent
-    div: a(href=`/games/${specificGame.id}/reviews/new`) Add a Review
-    br
     h2 Reviews
-    br
     each review in specificGame.Reviews
-        div
-            ul
-                li: h3 #{review.title} by #{review.User.username}
-                li: h4 Rating: #{review.rating}
-                li: p= review.content
-                if authenticated
-                    if user.id == review.userId
-                        button(class="reviewDelete" id=review.id) Delete
-                        a(href=`/reviews/${review.id}/edit`) Edit
+        div.contentMain
+            h3 #{review.title} by #{review.User.username}
+            p Rating: #{review.rating}
+            p= review.content
+            if authenticated
+                if user.id == review.userId
+                    button(class="reviewDelete" id=review.id) Delete
+                    a(href=`/reviews/${review.id}/edit`) Edit
