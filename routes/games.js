@@ -3,10 +3,11 @@ var router = express.Router();
 const { validationResult } = require('express-validator');
 const { asyncHandler, csrfProtection, reviewValidators } = require('./utils.js');
 const db = require('../db/models');
-const {requireAuth} = require('../auth.js')
+const {requireAuth} = require('../auth.js');
 
-//Gets all games in the games table
+// Gets all games in the games table
 router.get('/', asyncHandler(async(req, res, next) => {
+
     const allGames = await db.Game.findAll({
         order: [['name']]
     });
@@ -17,26 +18,24 @@ router.get('/', asyncHandler(async(req, res, next) => {
         });
         res.render('all-games', {allCollections, allGames});
     } else {
-        console.log(req.session.auth)
         res.render('all-games', {allGames});
-    }
-
+    };
 }));
 
-// //Gets a specific game based on id
+// Gets a specific game based on id
 router.get('/:id(\\d+)', asyncHandler(async(req, res, next) => {
+
     const specificGame = await db.Game.findByPk(req.params.id);
     if(specificGame) {
         res.render('specific-game', {specificGame});
     }else{
         next(new Error("Game not found"));
-        // res.send("404 error: Game not found")
-    }
+    };
 }));
 
-//TODO
 //Showing all reviews for a specific game
 router.get('/:id(\\d+)/reviews', asyncHandler(async (req, res, next) => {
+
     const specificGame = await db.Game.findByPk(req.params.id ,{
         // Here we get the specific game's review and the user who wrote it
         include: [
@@ -44,37 +43,33 @@ router.get('/:id(\\d+)/reviews', asyncHandler(async (req, res, next) => {
                 model: db.Review,
                 include: db.User
             }
-
         ]
-    })
+    });
 
     if(specificGame){
-
-        res.render('specific-game-reviews', {specificGame})
-        //res.json({specificGame})
+        res.render('specific-game-reviews', {specificGame});
     } else{
-        next(new Error('Games has no reviews'))
+        next(new Error('Games has no reviews'));
     }
 }));
 
 
 //Gets a new form to create a review
-router.get('/:id(\\d+)/reviews/new',
-    csrfProtection,
-    requireAuth,
-    asyncHandler(async(req, res ,next) => {
+router.get('/:id(\\d+)/reviews/new', csrfProtection, requireAuth, asyncHandler(async(req, res ,next) => {
+
         res.render('review-form', {
             gameId: req.params.id,
             csrfToken: req.csrfToken()
-        })
+        });
     })
-)
+);
 
 //Create a review for a specific game
 router.post("/:id(\\d+)/reviews", csrfProtection, requireAuth, asyncHandler(async(req, res ,next) => {
+
     const {title, rating, content} = req.body;
     const reviewErrors = validationResult(req);
-    console.lo
+
     if (reviewErrors.isEmpty()){
         const createReview = await db.Review.create({
             title,
@@ -93,8 +88,8 @@ router.post("/:id(\\d+)/reviews", csrfProtection, requireAuth, asyncHandler(asyn
                 errors
             }
         )
-//        res.redirect()
     }
 }));
+
 
 module.exports = router;
