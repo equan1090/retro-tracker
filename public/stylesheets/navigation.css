@@ -1,0 +1,84 @@
+nav{
+    /* background: linear-gradient(90deg, #d53369 0%, #daae51 100%); */
+    margin-top: 0;
+    /* position: fixed; */
+    width: 100%;
+    background: linear-gradient(42deg, rgba(120,0,255,1) 47%, rgba(0,1,98,1) 100%);
+    /* position: fixed;
+    width: auto; */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    border: solid black;
+    /* border-radius: 15px; */
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    /* opacity:80%; */
+}
+ 
+.registerLink{
+    padding-top: 100px;
+  display: flex;
+  justify-content: center;
+  }
+
+.nav-link-active, .nav-link{
+border:solid black;
+/* font-size: 24px;
+color: lightgray;
+
+text-align: center;
+width: 1em;
+transition-property: font-size; */
+font-family: Arial, Helvetica, sans-serif;
+padding: 1em 1em;
+margin: 1.0em 1.0em;
+transition-duration: .5s;
+display: block;
+width: fit-content;
+height: fit-content;
+padding: 10px 5px;
+text-align: center;
+border-radius: 5px;
+box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+background: linear-gradient(42deg, rgba(120,0,255,1) 47%, rgba(0,1,98,1) 100%);
+color:lightgray;
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+line-height: 25px;
+text-decoration: none;
+}
+  
+.nav-link-active:hover, .nav-link:hover{
+opacity: 50%;
+/* width: 2.5em; */
+font-size: 26px;
+}
+
+.nav-link-disabled{
+/* background: linear-gradient(90deg, #5855b4 0%, #8fffcb 100%); */
+/* background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%); */
+/* border: grey solid 3px; */
+border-radius: 5px;
+padding: 15px 30px;
+opacity: 50%;
+display: none;
+}
+
+a{
+    display: flex;
+    justify-content: center;
+    width: fit-content;
+    height: 25px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    background: linear-gradient(42deg, rgba(120,0,255,1) 47%, rgba(0,1,98,1) 100%);
+    color:lightgray;
+  
+    line-height: 25px;
+    text-decoration: none;
+  }

@@ -7,8 +7,9 @@ append head
   script(src="/javascripts/index.js" type="module" defer)
 
 block content
-  h1= title
-
+  div.contentReview
+    h3= title
+    p Welcome to Retro Game Tracker! The website aimed to help you keep track of all you game collections!
   div(class='container')
     each game in games
       a.homePageGameButton(href=`/games/${game.id}`)

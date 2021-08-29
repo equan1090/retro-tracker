@@ -1,14 +1,10 @@
 extends layout
 block content
-    div.tableContainer
-        table
-            thead
-                tr
-                    td.tableItem Name
-                    td.tableItem User
-            tbody
-                each collection in allCollections
-                    tr
-                        td.tableItem= collection.name
-                        td.tableItem= collection.User.username
-                        td.tableItem: a(href=`/collections/${collection.id}`) Click to see more info
+    div.mainContainer
+        each collection in allCollections
+                div.contentMain
+                    div.content1
+                        h3 #{collection.User.username}'s #{collection.name} collection
+                    div.content2
+                        a(href=`/collections/${collection.id}`).nav-link-active View collection
+                

@@ -1,0 +1,26 @@
+.textContainer{
+  display:flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.buttonContainer{
+  display:flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.tableContainer {
+    display: flex;
+    justify-content: center;
+  }
+
+  .mainContainer{
+    display:flex;
+    flex-wrap: wrap;
+  }
+
+  .miscGameInfo{
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+  }

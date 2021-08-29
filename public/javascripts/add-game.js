@@ -1,7 +1,7 @@
 
 
 
-const allButtons = document.querySelectorAll('.addGameBtn');
+const allButtons = document.querySelectorAll('#addGameBtn');
 for (let button of allButtons) {
     button.addEventListener('click', async (event) => {
         const gameId = event.target.parentElement.parentElement.id;
