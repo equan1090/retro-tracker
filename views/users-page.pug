@@ -1,7 +1,10 @@
 extends layout
 
 block content
-    h1= `${specifiedUser.username}'s Collections`
-    ul
+    div.mainContainer
         each collection in collections
-            h4: a(href=`/collections/${collection.id}`)= `${collection.name}`
+                div.contentMain
+                    div.content1
+                        h3 #{collection.name}
+                    div.content2
+                        a(href=`/collections/${collection.id}`).nav-link-active View collection

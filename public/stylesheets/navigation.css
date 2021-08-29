@@ -37,14 +37,16 @@ margin: 1.0em 1.0em;
 transition-duration: .5s;
 display: block;
 width: fit-content;
-height: 15px;
+height: fit-content;
 padding: 10px 5px;
 text-align: center;
 border-radius: 5px;
 box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 background: linear-gradient(42deg, rgba(120,0,255,1) 47%, rgba(0,1,98,1) 100%);
 color:lightgray;
-
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
 line-height: 25px;
 text-decoration: none;
 }

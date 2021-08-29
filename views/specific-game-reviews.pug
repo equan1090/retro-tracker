@@ -4,13 +4,14 @@ append head
 append addReviewButton
     a.nav-link-active(href=`/games/${specificGame.id}/reviews/new`) Add a Review
 block moreContent
-    h2 Reviews
-    each review in specificGame.Reviews
-        div.contentMain
-            h3 #{review.title} by #{review.User.username}
-            p Rating: #{review.rating}
-            p= review.content
-            if authenticated
-                if user.id == review.userId
-                    button(class="reviewDelete" id=review.id) Delete
-                    a(href=`/reviews/${review.id}/edit`) Edit
+    h3 Reviews
+    div.mainContainer
+        each review in specificGame.Reviews
+            div.contentMain
+                h4 #{review.title} by #{review.User.username}
+                p Rating: #{review.rating}
+                p= review.content
+                if authenticated
+                    if user.id == review.userId
+                        button(class="reviewDelete" id=review.id) Delete
+                        a(href=`/reviews/${review.id}/edit`) Edit

@@ -1,14 +1,12 @@
 extends layout
 block content
-    div.contentMain
-        h1= specificGame.name
+    div.contentReview
+        h3 #{specificGame.name} by #{specificGame.publisher} on #{specificGame.platform} 
         div.content1
             div.gameInfo
                 img(src=specificGame.image alt='Title cover of game')
             p= specificGame.description
             div.miscGameInfo
-                p= specificGame.platform
-                p= specificGame.publisher
         block addReviewButton
         a(href=`/games/${specificGame.id}/reviews` id='reviews-link').nav-link-active Reviews
     block moreContent

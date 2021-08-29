@@ -18,3 +18,9 @@
     display:flex;
     flex-wrap: wrap;
   }
+
+  .miscGameInfo{
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+  }

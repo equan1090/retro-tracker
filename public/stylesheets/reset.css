@@ -58,3 +58,8 @@ form {
 tr:hover {
   background-color: yellow;
 }
+
+.imgLogo{
+  width: 64px;
+  height: 64px;
+}

@@ -12,7 +12,8 @@ html
         link(rel="stylesheet", href="/stylesheets/content.css")
   body
     nav.nav
-      a(class='nav-link-active' href="/") Home
+      a(href="/").nav-link-active
+        img(src="stylesheets/logo.jpg", alt="Home").imgLogo
       a(class='nav-link-active' href="/collections") Find Collection
       a(class='nav-link-active' href='/games') Find Game
       if locals.authenticated
@@ -22,5 +23,6 @@ html
         a(class='nav-link-active' href="/users/login") Log In
         a(class='nav-link-active' href="/users/register") Register
         a(class='nav-link-active' href="/users/login/demo") Demo User
+      a(href="https://github.com/equan1090/retro-tracker").nav-link-active GitHub Source
 
     block content
