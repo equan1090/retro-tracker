@@ -49,7 +49,7 @@ router.post('/:id', csrfProtection, requireAuth, asyncHandler( async (req, res, 
             rating,
             content
         });
-        res.redirect(`/reviews/${req.params.id}`);
+        res.redirect(`/games/${review.gameId}/reviews`);
     } else if (req.session.auth.userId !== review.userId) {
         next(new Error("You are not authorized to delete that"));
     } else {

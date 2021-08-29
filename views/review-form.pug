@@ -7,9 +7,10 @@ block content
             label(for="title") Title:
             input(type="text" name="title" size="55" required)
         div.textContainer
-            label(for="rating") Gimme a rating:
+            label(for="rating") Rating:
             input(type="number" name="rating" min="1" max="5" required)
         div.buttonContainer
             textarea(name="content" placeholder="Enter a review here" rows="12" cols="50" required)
-        button(type="submit") Create review
-    a(href=`/games/${gameId}/reviews`) Cancel
+        div.buttonContainer
+            button(type="submit").nav-link-active Create review
+            a(href=`/games/${gameId}/reviews`).nav-link-active Cancel

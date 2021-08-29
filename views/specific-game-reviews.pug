@@ -13,5 +13,6 @@ block moreContent
                 p= review.content
                 if authenticated
                     if user.id == review.userId
-                        button(class="reviewDelete" id=review.id) Delete
-                        a(href=`/reviews/${review.id}/edit`) Edit
+                        div.buttonContainer
+                            button(class="reviewDelete" id=review.id).nav-link-active Delete
+                            a(href=`/reviews/${review.id}/edit`).nav-link-active Edit
