@@ -25,13 +25,14 @@ h1 {
 
 body{
   margin:0;
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 
 
 
 
-/* 
+/*
 ul{
   width: 80%;
   margin:30px auto;
