@@ -2,24 +2,21 @@ extends layout
 append head
     script(src="/javascripts/delete-game.js" type="module")
 block content
-
-    h1(id=specificCollection.id, class="collectionName") #{specificCollection.User.username}'s #{specificCollection.name}
+    div.contentMain
+        h2(id=specificCollection.id, class="collectionName") #{specificCollection.User.username}'s #{specificCollection.name}
         if locals.authenticated
             if locals.user.id == specificCollection.userId
-                a(href='/games') Add game
+                a(href='/games').nav-link-active Add game
     div.mainContainer
         each game in specificCollection.Games 
             div(id=`${game.id}`).contentMain
-                h2= game.name
+                h2 #{game.name} by #{game.publisher} for #{game.platform}
                 div.content1
                     div.gameInfo
                         img(class="game-image" src= game.image alt="")
-                    p= game.description
-                    div.miscGameInfo
-                        p= game.publisher
-                        p= game.platform
-                        a(href=`/games/${game.id}/reviews`).nav-link-active Reviews
+                    p.gameDescription= game.description
                 div.content2
+                    a(href=`/games/${game.id}/reviews`).nav-link-active Reviews
                 if locals.authenticated
                     if locals.user.id == specificCollection.userId
                         Button.removeGame Delete

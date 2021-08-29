@@ -22,7 +22,7 @@ block content
             label(for='confirmPassword') Confirm Password
             input(type='password' name='confirmPassword' required)
         div.buttonContainer
-            button(type='submit') Register
-            a(href='/') Cancel
-    div.registerContainer
-        a(href='/users/login') Have an account? Log in here!
+            button(type='submit').nav-link-active Register
+            a(href='/').nav-link-active Cancel
+    div.customButton
+        a(href='/users/login').nav-link-active Have an account? Log in here!
