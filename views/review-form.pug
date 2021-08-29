@@ -10,7 +10,6 @@ block content
             label(for="rating") Gimme a rating:
             input(type="number" name="rating" min="1" max="5" required)
         div.buttonContainer
-            label(for="content") Enter your review here:
-            textarea(name="content" rows="12" cols="50" required)
+            textarea(name="content" placeholder="Enter a review here" rows="12" cols="50" required)
         button(type="submit") Create review
     a(href=`/games/${gameId}/reviews`) Cancel
