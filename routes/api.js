@@ -6,11 +6,7 @@ const { asyncHandler } = require('./utils.js');
 const db = require(`../db/models`);
 
 
-/*
-    This router delete handler serves as a way to delete a logged in user's own review.
-    Otherwise, an error is thrown letting the user know that the review doesn't exist or that
-    they are not authorized to delete the review.
-*/
+
 router.delete('/reviews/:id(\\d+)', requireAuth, asyncHandler(async(req, res, next) => {
 
     const review = await db.Review.findByPk(req.params.id);
