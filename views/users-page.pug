@@ -1,6 +1,8 @@
 extends layout
 
 block content
+    div.headerContainer
+        h2 #{specifiedUser.username}'s Collections
     div.mainContainer
         each collection in collections
                 div.contentMain
