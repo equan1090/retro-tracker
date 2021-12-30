@@ -1,5 +1,5 @@
 # RetroGameTracker
-
+<!--  -->
 RetroGameTracker is a website that allows you to discover your next favorite game. It allows you to organize your games, while also allowing you to rate the games yourself. You can find our website at https://retro-game-tracker.herokuapp.com/
 
 ## Contributors
@@ -95,5 +95,3 @@ RetroGameTracker is a website that allows you to discover your next favorite gam
 
 ## Database Structure
 ![image](https://user-images.githubusercontent.com/76127850/131228440-cc5b362f-327c-4c05-acc4-5df784769fd3.png)
-
-

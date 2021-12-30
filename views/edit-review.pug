@@ -11,7 +11,7 @@ block content
             input(type="number" name="rating" value= review.rating min="1" max="5" required)
         div
 
-            textarea(name="content" value= review.content rows="12" cols="50" required)
+            textarea(name="content" rows="12" cols="50" required) #{review.content}
         div.buttonContainer
             button(type="submit").nav-link-active Edit Review
             a(href=`/games/${review.gameId}`).nav-link-active Cancel
